@@ -2,51 +2,244 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <!-- To poniżej odpowiada za idealne dopasowanie do ekranu telefonu -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hypershops - Resell</title>
+    <title>Futuristic Turret Store</title>
     <style>
-        body { font-family: sans-serif; background-color: #f4f4f4; padding: 20px; display: flex; justify-content: center; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; width: 100%; }
-        .product-card { background: white; padding: 25px; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .product-card img { max-width: 100%; height: auto; border-radius: 8px; max-height: 200px; object-fit: cover; }
-        .product-card h3 { margin: 15px 0 10px 0; font-size: 1.4rem; color: #333; }
-        .price { font-size: 1.2rem; color: #e44d26; font-weight: bold; margin-bottom: 20px; }
-        .buy-btn { background-color: #0070ba; color: white; border: none; padding: 12px 24px; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
-        .buy-btn:hover { background-color: #005ea6; }
+        /* Modern Dark Theme - Paleta kolorów */
+        :root {
+            --bg-color: #0d0e12;
+            --card-bg: #161820;
+            --accent-color: #00ffcc; /* Neonowy turkus */
+            --text-main: #ffffff;
+            --text-muted: #8a8f98;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Nagłówek i Logo */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #222633;
+            position: sticky;
+            top: 0;
+            background-color: rgba(13, 14, 18, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        /* Główny baner / Hero section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(0,255,204,0.05) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        /* Abstrakcyjna nowoczesna wieżyczka z CSS jako element wizualny */
+        .turret-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px auto;
+            position: relative;
+            background: var(--accent-color);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+            box-shadow: 0 0 30px var(--accent-color);
+            opacity: 0.8;
+        }
+        
+        .turret-icon::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 35px;
+            width: 10px;
+            height: 25px;
+            background: var(--accent-color);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Siatka produktów - w pełni responsywna */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Karta produktu */
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #222633;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .product-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #1f222e;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        /* Nowoczesny przycisk */
+        .buy-btn {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        /* Optymalizacje specjalnie pod małe ekrany telefonów */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .products-grid {
+                padding: 15px;
+                gap: 15px;
+            }
+            .product-card {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="product-grid">
-  <div class="product-card">
-    <img src="https://unsplash.com" alt="Buty sportowe">
-    <h3>Limitowane Sneakersy</h3>
-    <p class="price">499.00 PLN</p>
-    <a href="#" class="buy-btn">Kup teraz</a>
-  </div>
-</div>
+    <header>
+        <div class="logo">Turret<span>Lab</span></div>
+        <div style="color: var(--accent-color); font-size: 1.2rem;">🛒 (0)</div>
+    </header>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hypershops - Premium Resell</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <section class="hero">
+        <!-- Nasza stylowa, minimalistyczna wieżyczka -->
+        <div class="turret-icon"></div>
+        <h1>Nowa Era Technologii</h1>
+        <p>Minimalistyczny design, maksymalna wydajność. Zoptymalizowane dla urządzeń mobilnych.</p>
+    </section>
 
-<div class="product-grid">
-  <!-- Karta Produktu -->
-  <div class="product-card">
-    <img src="https://unsplash.com" alt="Premium Sneakers">
-    <h3>Air Jordan 1 Retro</h3>
-    <p class="price">899.00 PLN</p>
-    <a href="#" class="buy-btn">Kup teraz</a>
-  </div>
-</div>
+    <main class="products-grid">
+        <!-- Produkt 1 -->
+        <div class="product-card">
+            <div class="product-image-placeholder">WIEŻYCZKA ALPHA</div>
+            <div>
+                <div class="product-title">Model Alpha-X</div>
+                <div class="product-desc">Ciemny mat, neonowe wykończenie. Najwyższa precyzja w minimalistycznym wydaniu.</div>
+            </div>
+            <div class="product-footer">
+                <div class="product-price">299 PLN</div>
+                <button class="buy-btn">Kup</button>
+            </div>
+        </div>
+
+        <!-- Produkt 2 -->
+        <div class="product-card">
+            <div class="product-image-placeholder">WIEŻYCZKA CYBER</div>
+            <div>
+                <div class="product-title">Model Cyber-Turret</div>
+                <div class="product-desc">Zaprojektowana z myślą o nowoczesnych wnętrzach. Pełna automatyzacja i styl.</div>
+            </div>
+            <div class="product-footer">
+                <div class="product-price">450 PLN</div>
+                <button class="buy-btn">Kup</button>
+            </div>
+        </div>
+    </main>
 
 </body>
 </html>
