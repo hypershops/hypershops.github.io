@@ -2,233 +2,238 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <!-- Gwarancja idealnego wyglądu i braku rozjeżdżania się na smartfonach -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperShops - Nowoczesny Sklep</title>
+    <title>HyperShops — Resell Store</title>
     <style>
-        /* Modern Dark Theme - HyperShops Colors */
+        /* Minimalistyczny, jasny motyw w stylu luksusowych marek streetweatowych */
         :root {
-            --bg-color: #0b0c10;
-            --card-bg: #1f2833;
-            --accent-color: #45f3ff; /* Neonowy błękit hiper-przestrzeni */
-            --text-main: #ffffff;
-            --text-muted: #c5a1ff; /* Delikatny fioletowy akcent dla kontrastu */
-            --text-normal: #e0e0e0;
+            --bg-color: #ffffff;
+            --border-color: #000000;
+            --text-main: #000000;
+            --text-muted: #707070;
+            --bg-card: #f9f9f9;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 60px;
+            line-height: 1.4;
         }
 
-        /* Nawigacja HyperShops */
+        /* Proste, linearne menu z grubą czarną kreską na dole */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #1f2833;
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--border-color);
             position: sticky;
             top: 0;
-            background-color: rgba(11, 12, 16, 0.85);
-            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
             z-index: 100;
         }
 
+        /* Nowoczesny podział na trzy kreski (Menu burger) dla telefonu */
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            width: 24px;
+        }
+
+        .menu-icon div {
+            height: 2px;
+            background-color: var(--border-color);
+            width: 100%;
+        }
+
         .logo {
-            font-weight: 900;
-            font-size: 1.4rem;
+            font-weight: 800;
+            font-size: 1.3rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            text-decoration: none;
             color: var(--text-main);
         }
 
-        .logo span {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px var(--accent-color);
+        .cart-status {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Sekcja główna / Hero */
+        /* Sekcja główna / Hero Drop */
         .hero {
             text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(180deg, rgba(69,243,255,0.06) 0%, rgba(0,0,0,0) 100%);
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* Nowoczesna, minimalistyczna wieżyczka w CSS */
-        .hyper-tower {
-            width: 60px;
-            height: 90px;
-            margin: 0 auto 25px auto;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            filter: drop-shadow(0 0 15px var(--accent-color));
-        }
-
-        /* Korona / zęby wieżyczki */
-        .tower-top {
-            width: 50px;
-            height: 15px;
-            background: var(--accent-color);
-            clip-path: polygon(0% 0%, 20% 0%, 20% 40%, 40% 40%, 40% 0%, 60% 0%, 60% 40%, 80% 40%, 80% 0%, 100% 0%, 100% 100%, 0% 100%);
-        }
-
-        /* Główny trzon wieży */
-        .tower-body {
+        /* Wieżyczka jako minimalistyczny sygnet z czarnych kresek */
+        .minimal-tower {
             width: 40px;
-            height: 65px;
-            background: linear-gradient(180deg, var(--accent-color) 0%, #1f2833 100%);
-            margin-top: 2px;
+            height: 55px;
+            margin: 0 auto 15px auto;
+            border: 2px solid var(--border-color);
             position: relative;
+            border-bottom: none;
         }
 
-        /* Świecące okno w wieżyczce */
-        .tower-window {
+        /* Korona wieżyczki z kresek */
+        .minimal-tower::before {
+            content: '';
             position: absolute;
-            top: 20px;
-            left: 15px;
-            width: 10px;
-            height: 20px;
-            background-color: var(--bg-color);
-            border-radius: 5px 5px 0 0;
-            border: 1px solid var(--accent-color);
-            box-shadow: inset 0 0 5px var(--accent-color);
+            top: -8px;
+            left: -2px;
+            width: 40px;
+            height: 8px;
+            background: 
+                linear-gradient(90deg, var(--border-color) 25%, transparent 25%, transparent 35%, var(--border-color) 35%, var(--border-color) 65%, transparent 65%, transparent 75%, var(--border-color) 75%),
+                var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-bottom: none;
+        }
+
+        /* Podstawa wieżyczki */
+        .minimal-tower::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -6px;
+            width: 48px;
+            height: 4px;
+            background-color: var(--border-color);
         }
 
         .hero h1 {
-            font-size: 2.4rem;
-            margin-bottom: 12px;
-            font-weight: 800;
-            letter-spacing: 1px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
         }
 
         .hero p {
-            color: var(--text-normal);
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.8;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Responsywna siatka produktów */
+        /* Siatka produktów - idealnie dopasowana do dwóch kolumn na telefonie */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 25px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(2, 1fr);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* Karta produktu w stylu Premium Dark */
+        /* Karta produktu z czarnymi obramowaniami (styl minimalistyczny grid) */
         .product-card {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            padding: 24px;
-            border: 1px solid #2e3944;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: var(--bg-color);
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 20px rgba(69, 243, 255, 0.1);
+        /* Usuwamy podwójną kreskę po prawej stronie w siatce dwukolumnowej */
+        .product-card:nth-child(2n) {
+            border-right: none;
         }
 
-        .product-image-placeholder {
+        .product-image-box {
             width: 100%;
-            height: 210px;
-            background: linear-gradient(135deg, #12161f 0%, #2e3944 100%);
-            border-radius: 14px;
-            margin-bottom: 20px;
+            aspect-ratio: 1 / 1;
+            background-color: var(--bg-card);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent-color);
+            font-size: 0.75rem;
             font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
             letter-spacing: 1px;
-            border: 1px dashed rgba(69, 243, 255, 0.2);
+            border: 1px solid #eeeeee;
         }
 
-        .product-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        .product-desc {
-            color: var(--text-normal);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            opacity: 0.75;
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
             flex-grow: 1;
         }
 
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
+        .product-brand {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.2px;
         }
 
         .product-price {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 2px;
         }
 
-        /* Nowoczesny przycisk "Hyper" */
+        /* Prosty, surowy przycisk resellu */
         .buy-btn {
-            background-color: transparent;
-            color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-            padding: 10px 24px;
-            border-radius: 12px;
+            margin-top: 12px;
+            background-color: var(--border-color);
+            color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            width: 100%;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
             letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: opacity 0.2s ease;
         }
 
         .buy-btn:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px var(--accent-color);
+            opacity: 0.8;
         }
 
-        /* Pełna optymalizacja pod telefony komórkowe */
-        @media (max-width: 480px) {
-            header {
-                padding: 15px;
+        /* Dostosowanie pod większe ekrany (komputery) */
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+                max-width: 1400px;
+                margin: 0 auto;
+                border-left: 1px solid var(--border-color);
             }
-            .logo {
-                font-size: 1.2rem;
+            .product-card:nth-child(2n) {
+                border-right: 1px solid var(--border-color);
+            }
+            .product-card:nth-child(4n) {
+                border-right: none;
             }
             .hero h1 {
-                font-size: 1.9rem;
-            }
-            .products-grid {
-                padding: 15px;
-                gap: 20px;
-            }
-            .product-card {
-                padding: 20px;
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -236,47 +241,70 @@
 <body>
 
     <header>
-        <div class="logo">Hyper<span>Shops</span></div>
-        <div style="color: var(--accent-color); font-size: 1.2rem; font-weight: bold; cursor: pointer;">🛒 Koszyk (0)</div>
+        <!-- Menu burger z lewej -->
+        <div class="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        
+        <!-- Logo na środku -->
+        <a href="#" class="logo">HyperShops</a>
+        
+        <!-- Stan koszyka z prawej -->
+        <div class="cart-status">BAG [0]</div>
     </header>
 
     <section class="hero">
-        <!-- Nasza stylowa, mobilna wieżyczka graficzna -->
-        <div class="hyper-tower">
-            <div class="tower-top"></div>
-            <div class="tower-body">
-                <div class="tower-window"></div>
-            </div>
-        </div>
-        <h1>Witamy w HyperShops</h1>
-        <p>Doświadcz niesamowitej szybkości i nowoczesnego designu. Przeglądaj nasze produkty wygodnie na każdym urządzeniu.</p>
+        <!-- Nasza wieżyczka stworzona z czystych, minimalistycznych kresek -->
+        <div class="minimal-tower"></div>
+        <h1>LATEST DROPS</h1>
+        <p>Verified Authentic & Ready to Ship</p>
     </section>
 
     <main class="products-grid">
         <!-- Produkt 1 -->
         <div class="product-card">
-            <div class="product-image-placeholder">PRODUKT #1</div>
-            <div>
-                <div class="product-title">Hyper Premium Item</div>
-                <div class="product-desc">Zaprojektowany z myślą o najwyższej wydajności. Idealny dla wymagających użytkowników szukających nowoczesnego stylu.</div>
+            <div class="product-image-box">IMAGE PLACEHOLDER</div>
+            <div class="product-info">
+                <div class="product-brand">HYPER EXCLUSIVE</div>
+                <div class="product-title">Model Tower One</div>
+                <div class="product-price">799,00 PLN</div>
             </div>
-            <div class="product-footer">
-                <div class="product-price">199 PLN</div>
-                <button class="buy-btn">Kup teraz</button>
-            </div>
+            <button class="buy-btn">ZOBACZ</button>
         </div>
 
         <!-- Produkt 2 -->
         <div class="product-card">
-            <div class="product-image-placeholder">PRODUKT #2</div>
-            <div>
-                <div class="product-title">Limited Edition Tower Pack</div>
-                <div class="product-desc">Ekskluzywny zestaw z motywem przewodnim naszej flagowej wieżyczki. Dostępny tylko do wyczerpania zapasów.</div>
+            <div class="product-image-box">IMAGE PLACEHOLDER</div>
+            <div class="product-info">
+                <div class="product-brand">STREETWEAR</div>
+                <div class="product-title">Minimalist Hooded Jacket</div>
+                <div class="product-price">450,00 PLN</div>
             </div>
-            <div class="product-footer">
-                <div class="product-price">349 PLN</div>
-                <button class="buy-btn">Kup teraz</button>
+            <button class="buy-btn">ZOBACZ</button>
+        </div>
+
+        <!-- Produkt 3 -->
+        <div class="product-card">
+            <div class="product-image-box">IMAGE PLACEHOLDER</div>
+            <div class="product-info">
+                <div class="product-brand">ACCESSORIES</div>
+                <div class="product-title">Linear Cap "Tower"</div>
+                <div class="product-price">180,00 PLN</div>
             </div>
+            <button class="buy-btn">ZOBACZ</button>
+        </div>
+
+        <!-- Produkt 4 -->
+        <div class="product-card">
+            <div class="product-image-box">IMAGE PLACEHOLDER</div>
+            <div class="product-info">
+                <div class="product-brand">COLLECTIBLES</div>
+                <div class="product-title">Resell Token #04</div>
+                <div class="product-price">1 200,00 PLN</div>
+            </div>
+            <button class="buy-btn">ZOBACZ</button>
         </div>
     </main>
 
