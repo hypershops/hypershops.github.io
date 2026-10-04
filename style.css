@@ -1,55 +1,87 @@
-body { 
-    font-family: sans-serif; 
-    background-color: #f4f4f4; 
-    padding: 20px; 
-    display: flex; 
-    justify-content: center; 
+/* Reset i podstawowe ustawienia dla telefonów */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-.product-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 20px; 
-    max-width: 1000px; 
-    width: 100%; 
+
+body {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
-.product-card { 
-    background: white; 
-    padding: 25px; 
-    border-radius: 12px; 
-    text-align: center; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+
+/* Siatka produktów - świetna na smartfony */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 400px; /* Szerokość idealna pod ekran telefonu */
+    width: 100%;
 }
-.product-card img { 
-    max-width: 100%; 
-    height: auto; 
-    border-radius: 8px; 
-    max-height: 200px; 
-    object-fit: cover; 
+
+/* Nowoczesna, ciemna karta produktu */
+.product-card {
+    background: #141414;
+    border: 1px solid #262626;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
 }
-.product-card h3 { 
-    margin: 15px 0 10px 0; 
-    font-size: 1.4rem; 
-    color: #333; 
+
+.product-card:active {
+    transform: scale(0.98); /* Efekt kliknięcia palcem na ekranie */
 }
-.price { 
-    font-size: 1.2rem; 
-    color: #e44d26; 
-    font-weight: bold; 
-    margin-bottom: 20px; 
+
+/* Zaokrąglone zdjęcie produktu */
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    max-height: 240px;
+    object-fit: cover;
+    background: #1a1a1a;
 }
-.buy-btn { 
-    background-color: #0070ba; 
-    color: white; 
-    border: none; 
-    padding: 12px 24px; 
-    border-radius: 6px; 
-    font-size: 1rem; 
-    font-weight: bold; 
-    cursor: pointer; 
-    text-decoration: none; 
-    display: inline-block; 
-    transition: background 0.2s; 
+
+/* Nazwa produktu */
+.product-card h3 {
+    margin: 18px 0 6px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
 }
-.buy-btn:hover { 
-    background-color: #005ea6; 
+
+/* Cena resell */
+.price {
+    font-size: 1.15rem;
+    color: #a3a3a3;
+    font-weight: 500;
+    margin-bottom: 22px;
 }
+
+/* Profesjonalny, czarny przycisk zakupu */
+.buy-btn {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 14px 0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: block; /* Rozciąga przycisk na całą szerokość karty */
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.buy-btn:hover {
+    background-color: #e5e5e5;
+}
+
